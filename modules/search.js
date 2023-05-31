@@ -86,6 +86,7 @@ class Playlist {
     console.log('this is Playlist Construct: ', playlist)
     this.title = playlist.title;
     this.album = playlist.album.title;
+    this.image = playlist.album.cover_small;
   }
 }
 
