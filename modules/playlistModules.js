@@ -34,7 +34,7 @@ async function getPlaylist(req, res, next) {
       let id = req.params.id;
     //   How are we specifying for individual songs? By ID?
       await Playlist.findByIdAndDelete(id);
-      res.status(200).send('Playlsit Deleted');
+      res.status(200).send('Playlist Deleted');
     } catch (err) {
       next(err);
     }
