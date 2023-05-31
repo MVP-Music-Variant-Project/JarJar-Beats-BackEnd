@@ -6,7 +6,12 @@ const app = express();
 require('dotenv').config();
 const Artist = require('./modules/artistModule');
 const cors = require('cors');
-console.log(Artist);
+
+const search = require('./modules/search'); 
+
+
+//console.log(Artist);
+
 app.use(cors());
 app.use(express.json());
 
@@ -27,11 +32,13 @@ app.get('/', (request, response) => {
   response.status(200).send('Welcome!');
 });
 
-//artist routes
+
+app.get('/searchConcerts', search.getConcerts); 
+// app.get('/searchSongs', search.getSongs);
+
 app.get('/artist', Artist.getArtist);
 app.post('/artist', Artist.postArtist);
 app.delete('/artist/:id', Artist.deleteArtist);
-
 
 
 app.get('*', (request, response) => {
