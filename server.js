@@ -4,10 +4,13 @@ const express = require('express');
 const app = express();
 
 require('dotenv').config();
+const Artist = require('./modules/artistModule');
 const cors = require('cors');
-
+console.log(Artist);
 app.use(cors());
 app.use(express.json());
+
+console.log(Artist.getArtist);
 
 const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3002;
@@ -23,6 +26,13 @@ mongoose.connect(process.env.DB_URL);
 app.get('/', (request, response) => {
   response.status(200).send('Welcome!');
 });
+
+//artist routes
+app.get('/artist', Artist.getArtist);
+app.post('/artist', Artist.postArtist);
+app.delete('/artist/:id', Artist.deleteArtist);
+
+
 
 app.get('*', (request, response) => {
   response.status(404).send('Not availabe');
