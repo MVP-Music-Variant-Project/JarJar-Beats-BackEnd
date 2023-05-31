@@ -6,6 +6,8 @@ const app = express();
 require('dotenv').config();
 const Artist = require('./modules/artistModule');
 const cors = require('cors');
+const playlistModule = require('./modules/playlistModules');
+
 
 const search = require('./modules/search'); 
 
@@ -31,6 +33,13 @@ mongoose.connect(process.env.DB_URL);
 app.get('/', (request, response) => {
   response.status(200).send('Welcome!');
 });
+
+
+// playlist routes
+app.get('/playlist', playlistModule.getPlaylist);
+app.post('/playlist', playlistModule.postPlaylist);
+app.delete('/playlist/:id', playlistModule.deletePlaylist)
+app.put('/playlist/:id', playlistModule.putPlaylist)
 
 
 app.get('/searchConcerts', search.getConcerts); 
