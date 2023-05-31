@@ -30,6 +30,8 @@ playlistModule.getPlaylist = async (req, res, next) => {
     //   How are we specifying for individual songs? By ID?
       await PlaylistSuperModel.findByIdAndDelete(id);
       res.status(200).send('Playlsit Deleted');
+      await Playlist.findByIdAndDelete(id);
+      res.status(200).send('Playlist Deleted');
     } catch (err) {
       next(err);
     }
