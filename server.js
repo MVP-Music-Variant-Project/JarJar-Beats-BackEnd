@@ -5,6 +5,8 @@ const app = express();
 
 require('dotenv').config();
 const cors = require('cors');
+const playlistModule = require('./modules/playlistModules');
+
 
 app.use(cors());
 app.use(express.json());
@@ -23,6 +25,12 @@ mongoose.connect(process.env.DB_URL);
 app.get('/', (request, response) => {
   response.status(200).send('Welcome!');
 });
+
+// playlist routes
+app.get('/playlist', playlistModule.getPlaylist);
+app.post('/playlist', playlistModule.postPlaylist);
+app.delete('/playlist/:id', playlistModule.deletePlaylist)
+app.put('/playlist/:id', playlistModule.putPlaylist)
 
 app.get('*', (request, response) => {
   response.status(404).send('Not availabe');
