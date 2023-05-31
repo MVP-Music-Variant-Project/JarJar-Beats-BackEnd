@@ -43,7 +43,7 @@ app.put('/playlist/:id', playlistModule.putPlaylist)
 
 
 app.get('/searchConcerts', search.getConcerts); 
-// app.get('/searchSongs', search.getSongs);
+app.get('/searchSongs', search.getSongs);
 
 app.get('/artist', Artist.getArtist);
 app.post('/artist', Artist.postArtist);
