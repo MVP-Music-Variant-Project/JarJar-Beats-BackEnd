@@ -9,10 +9,10 @@ const playlistSchema = new Schema ({
         type: String,
         required: true
     },
-    id: {
-        type: String,
-        required: true
-    },
+    // id: {
+    //     type: String,
+    //     required: true
+    // },
     title: {
         type: String, 
         required: true
