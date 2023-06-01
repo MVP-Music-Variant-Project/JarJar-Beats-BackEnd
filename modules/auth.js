@@ -21,7 +21,6 @@ function verifyUser(req, errorFirstOrUserCallbackFunction) {
   try {
     // extract the token from the user's request
     const token = req.headers.authorization.split(' ')[1];
-    console.log(token);
     jwt.verify(token, getKey, {}, errorFirstOrUserCallbackFunction)
   } catch (error) {
     errorFirstOrUserCallbackFunction('not authorized');
