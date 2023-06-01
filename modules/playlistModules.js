@@ -29,19 +29,19 @@ playlistModule.getPlaylist = async (req, res, next) => {
 };
 
 playlistModule.postPlaylist = async (req, res, next) => {
-  verifyUser(req, async (err, user) => {
-    if (err) {
-      console.error(err);
-      res.send('invalid token');
-    } else {
+  // verifyUser(req, async (err, user) => {
+  //   if (err) {
+  //     console.error(err);
+  //     res.send('invalid token');
+  //   } else {
       try {
         let createdPlaylist = await PlaylistSuperModel.create(req.body);
         res.status(200).send(createdPlaylist);
       } catch (err) {
         next(err);
       }
-    }
-  });
+  //   }
+  // });
 };
 
 playlistModule.deletePlaylist = async (req, res, next) => {
