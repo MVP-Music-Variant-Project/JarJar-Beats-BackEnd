@@ -39,7 +39,7 @@ app.get('/', (request, response) => {
 app.get('/playlist', playlistModule.getPlaylist);
 app.post('/playlist', playlistModule.postPlaylist);
 app.delete('/playlist/:id', playlistModule.deletePlaylist)
-app.put('/playlist/:id', playlistModule.putPlaylist)
+app.put('/playlist', playlistModule.putPlaylist)
 
 
 app.get('/searchConcerts', search.getConcerts);
