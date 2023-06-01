@@ -7,11 +7,11 @@ const verifyUser = require('./auth');
 
 // This exports multiple functions at once.
 playlistModule.getPlaylist = async (req, res, next) => {
-  verifyUser(req, async (err, user) => {
+  /* verifyUser(req, async (err, user) => {
     if (err) {
       console.error(err);
       res.send('invalid token');
-    } else {
+    } else { */
       let params = {};
       if (req.query.email) {
         params.email = req.query.email
@@ -24,8 +24,8 @@ playlistModule.getPlaylist = async (req, res, next) => {
       } catch (err) {
         next(err)
       }
-    }
-  });
+    // }
+  // });
 };
 
 playlistModule.postPlaylist = async (req, res, next) => {
@@ -34,6 +34,7 @@ playlistModule.postPlaylist = async (req, res, next) => {
   //     console.error(err);
   //     res.send('invalid token');
   //   } else {
+    console.log('test', req.body);
       try {
         let createdPlaylist = await PlaylistSuperModel.create(req.body);
         res.status(200).send(createdPlaylist);
@@ -65,21 +66,12 @@ playlistModule.deletePlaylist = async (req, res, next) => {
 }
 
 playlistModule.putPlaylist = async (req, res, next) => {
-  verifyUser(req, async (err, user) => {
-    if (err) {
-      console.error(err);
-      res.send('invalid token');
-    } else {
-      try {
-        let id = req.params.id;
-        //   How are we specifying for individual songs? By ID?
-        await PlaylistSuperModel.findByIdAndDelete(id);
-        res.status(200).send('Playlist Deleted');
-      } catch (err) {
-        next(err);
-      }
-    }
-  });
+  try {
+    await PlaylistSuperModel.findOneAndUpdate({ email: req.body.email }, {$set: { songs: req.body.songs } });
+    res.status(200).send('Playlist Updated');
+  } catch (err) {
+    next(err);
+  }
 }
 
 module.exports = playlistModule;
