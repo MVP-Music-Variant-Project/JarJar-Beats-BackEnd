@@ -32,8 +32,6 @@ search.getConcerts = async (req, res, next) => {
       console.log('this is the result: ', result.data.data)
       cache[key].data = result.data.data.map(object => {
         return new Concert(object);
-        console.log('this is object: ', object)
-        return object;
       });
     }
     res.status(200).send(cache[key].data);
@@ -62,8 +60,6 @@ search.getSongs = async (req, res, next) => {
       // console.log('this is the result: ', result.data.data)
       cache[key].data = result.data.data.map(object => {
         return new Playlist(object);
-        console.log('this is song(object): ', object)
-        return object;
       });
     }
     res.status(200).send(cache[key].data);

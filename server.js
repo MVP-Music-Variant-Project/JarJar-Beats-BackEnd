@@ -9,7 +9,7 @@ const cors = require('cors');
 const playlistModule = require('./modules/playlistModules');
 
 
-const search = require('./modules/search'); 
+const search = require('./modules/search');
 
 
 //console.log(Artist);
@@ -42,7 +42,7 @@ app.delete('/playlist/:id', playlistModule.deletePlaylist)
 app.put('/playlist/:id', playlistModule.putPlaylist)
 
 
-app.get('/searchConcerts', search.getConcerts); 
+app.get('/searchConcerts', search.getConcerts);
 app.get('/searchSongs', search.getSongs);
 
 app.get('/artist', Artist.getArtist);
