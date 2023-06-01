@@ -19,7 +19,7 @@ search.getConcerts = async (req, res, next) => {
   const url = `https://concerts-artists-events-tracker.p.rapidapi.com/artist?name=${artistName}&rapidapi-key=${process.env.CONCERT_API_KEY}`;
   console.log('this is the url: ', url);
 
-  const tenDaysInMillis = 10 * 24 * 60 * 60 * 1000; // 10 days in milliseconds
+  const tenDaysInMillis = 14 * 24 * 60 * 60 * 1000; // 10 days in milliseconds
 
   try {
     if (cache[key] && (Date.now() - cache[key].timestamp < tenDaysInMillis)) {
@@ -47,7 +47,7 @@ search.getSongs = async (req, res, next) => {
   const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${artistLibrary}&rapidapi-key=${process.env.SONG_API_KEY}`;
   console.log('this is the song url: ', url);
 
-  const tenDaysInMillis = 10 * 24 * 60 * 60 * 1000; // 10 days in milliseconds
+  const tenDaysInMillis = 14 * 24 * 60 * 60 * 1000; // 10 days in milliseconds
 
   try {
     if (cache[key] && (Date.now() - cache[key].timestamp < tenDaysInMillis)) {
@@ -82,7 +82,7 @@ class Playlist {
     console.log('this is Playlist Construct: ', playlist)
     this.title = playlist.title;
     this.album = playlist.album.title;
-    this.image = playlist.album.cover_small;
+    this.image = playlist.album.cover_medium;
   }
 }
 
