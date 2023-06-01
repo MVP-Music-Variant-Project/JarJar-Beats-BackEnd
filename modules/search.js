@@ -80,6 +80,8 @@ console.log('This is the Concert: ', Concert);
 class Playlist {
   constructor(playlist) {
     console.log('this is Playlist Construct: ', playlist)
+    this.name = playlist.artist.name;
+    this.id = playlist.id
     this.title = playlist.title;
     this.album = playlist.album.title;
     this.image = playlist.album.cover_medium;
