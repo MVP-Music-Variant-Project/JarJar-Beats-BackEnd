@@ -46,29 +46,27 @@ playlistModule.postPlaylist = async (req, res, next) => {
 };
 
 playlistModule.deletePlaylist = async (req, res, next) => {
-  verifyUser(req, async (err, user) => {
-    if (err) {
-      console.error(err);
-      res.send('invalid token');
-    } else {
+  //  verifyUser(req, async (err, user) => {
+  //   if (err) {
+  //     console.error(err);
+  //     res.send('invalid token');
+  //   } else { 
       try {
         let id = req.params.id;
-        //   How are we specifying for individual songs? By ID?
         await PlaylistSuperModel.findByIdAndDelete(id);
-        res.status(200).send('Playlsit Deleted');
-        await Playlist.findByIdAndDelete(id);
         res.status(200).send('Playlist Deleted');
       } catch (err) {
         next(err);
       }
-    }
-  });
+  //   }
+  // });
 }
 
 playlistModule.putPlaylist = async (req, res, next) => {
   try {
     let id = req.params.id;
     let playlistFromReq = req.body;
+    console.log('test', playlistFromReq);
     let options = {
       new: true,
       overwrite: true
